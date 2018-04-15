@@ -22,8 +22,7 @@ Python 3.x
 
 NEST 2.12
 
-  Python packages:
-  
+  Python packages:  
   YAML
   Numpy
   Matplotlib
