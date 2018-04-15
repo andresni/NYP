@@ -1,0 +1,165 @@
+---                           
+network:                      
+  trash: &a1            
+    type: ht_neuron_sh_minis       
+    parameters: &a2
+           E_Na: 30.0
+           E_K: -90.0
+           g_NaL: 0.2
+           g_KL: 1.0
+           tau_m: 16.0
+           theta_eq: -51.0
+           tau_theta: 2.0
+           tau_spike: 1.75
+           t_ref: 2.0
+           g_peak_AMPA: 0.025
+           tau_rise_AMPA: 0.5
+           tau_decay_AMPA: 2.4
+           E_rev_AMPA: 0.0
+           g_peak_NMDA: 0.02
+           tau_rise_NMDA: 4.0
+           tau_decay_NMDA: 40.0
+           E_rev_NMDA: 0.0
+           V_act_NMDA: -25.57
+           S_act_NMDA: 0.081
+           tau_Mg_slow_NMDA: 22.7
+           tau_Mg_fast_NMDA: 0.68
+           g_peak_GABA_A: 0.33
+           tau_rise_GABA_A: 1.0
+           tau_decay_GABA_A: 7.0
+           E_rev_GABA_A: -70.0
+           g_peak_GABA_B: 0.0132
+           tau_rise_GABA_B: 60.0
+           tau_decay_GABA_B: 200.0
+           E_rev_GABA_B: -90.0
+           g_peak_NaP: 0.5
+           E_rev_NaP: 30.0
+           g_peak_KNa: 0.5
+           E_rev_KNa: -90.0
+           tau_D_KNa: 1400.0
+           g_peak_T: 0.0
+           E_rev_T: 0.0
+           g_peak_h: 0.0
+           E_rev_h: -40.0           
+
+  neurons:                   
+      -                       
+        name: Retina          
+        type: sinusoidal_poisson_generator
+        parameters:
+           amplitude: 0.0
+           rate: 45.0
+           frequency: 4.0
+           phase: 0.0
+      -
+        name: MINI_neuron
+        type: sinusoidal_poisson_generator
+        parameters:
+           rate: 2.0
+      -
+        name: extrinsic
+        type: sinusoidal_poisson_generator
+        parameters:
+           rate: 250.0
+      -
+        name: Ex_cort
+        <<: *a1
+        parameters:
+           <<: *a2
+      -         
+        name: In_cort
+        <<: *a1
+        parameters:
+           <<: *a2
+           tau_m: 8.0
+           theta_eq: -53.0
+           tau_theta: 1.0
+           tau_spike: 0.5
+           t_ref: 1.0
+      -
+        name: Ex_thal_primary
+        <<: *a1
+        parameters:
+           <<: *a2
+           tau_m: 8.0
+           theta_eq: -53.0
+           tau_theta: 1.0
+           tau_spike: 0.75
+           t_ref: 1.0
+           g_peak_NaP: 0.4
+           g_peak_h: 1.0
+           g_peak_T: 1.0
+           g_peak_KNa: 0.0
+           E_rev_GABA_A: -80.0
+      -
+        name: In_thal_primary
+        <<: *a1
+        parameters:
+           <<: *a2
+           tau_m: 8.0
+           theta_eq: -53.0
+           tau_theta: 1.0
+           tau_spike: 0.75
+           t_ref: 1.0
+           g_peak_NaP: 0.4
+           g_peak_T: 1.0
+           g_peak_KNa: 0.0
+           E_rev_GABA_A: -80.0
+      -
+        name: Ex_thal_secondary
+        <<: *a1
+        parameters:
+           <<: *a2
+           tau_m: 8.0
+           theta_eq: -53.0
+           tau_theta: 1.0
+           tau_spike: 0.75
+           t_ref: 1.0
+           g_peak_NaP: 0.4
+           g_peak_h: 1.0
+           g_peak_T: 1.0
+           g_peak_KNa: 0.0
+           E_rev_GABA_A: -80.0
+           g_peak_AMPA: 0.01
+      -
+        name: In_thal_secondary
+        <<: *a1
+        parameters:
+           <<: *a2
+           tau_m: 8.0
+           theta_eq: -53.0
+           tau_theta: 1.0
+           tau_spike: 0.75
+           t_ref: 1.0
+           g_peak_NaP: 0.4
+           g_peak_T: 1.0
+           g_peak_KNa: 0.0
+           E_rev_GABA_A: -80.0
+           g_peak_AMPA: 0.01
+      -
+        name: In_ret_primary
+        <<: *a1
+        parameters:
+           <<: *a2
+           tau_m: 8.0
+           theta_eq: -53.0
+           tau_theta: 1.0
+           tau_spike: 0.75
+           t_ref: 1.0
+           g_peak_NaP: 0.35
+           g_peak_T: 1.0
+           g_peak_KNa: 0.0
+      -
+        name: In_ret_secondary
+        <<: *a1
+        parameters:
+           <<: *a2
+           tau_m: 8.0
+           theta_eq: -53.0
+           tau_theta: 1.0
+           tau_spike: 0.75
+           t_ref: 1.0
+           g_peak_NaP: 0.25
+           g_peak_T: 1.0
+           g_peak_KNa: 0.0
+...                          

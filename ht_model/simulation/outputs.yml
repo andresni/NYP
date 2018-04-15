@@ -1,0 +1,11 @@
+---
+simulation: ### Here you specify all things that should be outputted
+    output:
+        data: ### Specifically for data to be used later
+          reset: True ### True = reset NEST engine after simulation (remove temp data)
+          save:
+              name: visstim ### Name of this simulation
+              style: [2D] ### Data format, i.e. two dimensional (neurons by time) or three (neurons by neurons by time)
+              formats: [".mat"] ### Output format ".mat" = MatLab, ".pickle" = pickled data, ".pf" = pandas dataframe
+        graphical: ["raster","mean_currents"] ### Graphical output formats
+...

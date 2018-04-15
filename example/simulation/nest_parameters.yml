@@ -1,0 +1,14 @@
+---                           ### Every YAML file starts with this
+simulation:                   ### This is the main structure for all things "simulation"
+  nest_initialization:        ### This takes all arguments you can pass to "nest.SetKernelStatus(...)"
+    local_num_threads: 16     ### Number of threads to use in simulation
+    resolution: 0.1           ### Delta t (timestep) between each state in the diff. equations (in ms). Must be <= than recorders samplerate and mininum delay.
+    dict_miss_is_error: True  ### Report errors of missing dictionaries
+    overwrite_files: True     ### Overwrite temporary files
+    data_path: temp           ### Foldername of temporary files
+    data_prefix: mult         ### Prefix for temporary files
+    print_time: True          ### Print timestamps of simulation to console
+  nest_other:                 ### Here are other parameters that are handled in specific cases
+    randomize: True           ### Create random seed (True) or use predetermined "rand_seed" (False)
+    rand_seed: 123456         ### Predetermined seed for randomization
+...                           ### Every YAML file ends with this

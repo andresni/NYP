@@ -1,0 +1,47 @@
+---
+### Here you specify recorder types
+network:
+ recorders:
+  types:
+    - ### Multimeter recording currents
+        type: multimeter
+        name: RecordingNode1
+        params:
+             interval: 0.1 ### Recording interval in ms
+             record_from: [V_m] ### Which properties to record
+             record_to: [file] ### Save to disk (file)
+    - ### Multimeter recording currents
+        type: multimeter
+        name: RecordingNode2
+        params:
+             interval: 0.1 ### Recording interval in ms
+             record_from: [rate] ### Which properties to record
+             record_to: [file] ### Save to disk (file)
+
+### Here you specify which population to record from with which type
+  record_from:
+    -
+        layer: Vp_L23_h
+        population: Ex_cort
+        recorder: RecordingNode1
+    -
+        layer: Vp_L56_v
+        population: Ex_cort
+        recorder: RecordingNode1
+    -
+        layer: Vp_L56_h
+        population: Ex_cort
+        recorder: RecordingNode1
+    -
+        layer: Vp_L23_v
+        population: Ex_cort
+        recorder: RecordingNode1
+    -
+        layer: Tp_layer
+        population: Ex_thal_primary
+        recorder: RecordingNode1
+    -
+        layer: Retina_layer
+        population: Retina
+        recorder: RecordingNode2
+...

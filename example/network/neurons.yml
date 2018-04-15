@@ -1,0 +1,27 @@
+---                           ### Every YAML file starts with this
+network:                      ### This is the main structure of all things "network"
+  trash: &anchor              ### Elements in "trash" will be thrown. "&anchor" means that when you use "*anchor" you inherit everything one level inside.
+    type: iaf_psc_alpha       ### Here we specify a model type to be used as a base. It must exist in NEST.
+    parameters:               ### Here we specify parameters to update the model type's default values, by using key-value pairs.
+      tau_m: 16.0             ### Here we set a specific key-value pair. The key-value must be in the same format as that in the original model type.
+      V_m: -51.0
+      t_ref: 2.0
+  neurons:                    ### Here we specify a list of the neurons we want
+      -                       ### This indicates the start of a list entry
+        name: Retina          ### Here we specify the new name of this neuron model
+        type: sinusoidal_poisson_generator
+        parameters:
+           amplitude: 0.0
+           rate: 0.0
+           frequency: 4.0
+           phase: 0.0
+      -
+        name: model1
+        <<: *anchor           ### Here we inherit everything from "&anchor" in "trash" 
+      -
+        <<: *anchor           ### Sequence of what you put where doesn't matter, as long as the indentation is correct
+        name: model2
+        parameters:
+           tau_m: 22.0
+           V_m: -79.0
+...                           ### Every YAML file ends with this

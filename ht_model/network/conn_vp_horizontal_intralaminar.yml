@@ -1,0 +1,141 @@
+---
+network:
+  trash:
+   s1: &s1
+     source_area: Vp_
+     target_area: Vp_
+   s2: &s2
+     connection_type: divergent
+     synapse_model: AMPA_syn
+     sources: {model: Ex_cort}
+     targets: {model: Ex_cort}
+     mask: 
+        rectangular:
+            lower_left: [-12.0,-12.0]
+            upper_right: [12.0,12.0]
+     kernel: 
+       gaussian: 
+          p_center: 0.1
+          sigma: 1.936
+     weights: 1.0
+     delays: 
+       normal: 
+          mean: 2.0
+          sigma: 0.25
+          min: 0.1
+
+  connections:
+     vp_horizontal_intralaminar:
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L23_v]
+            params:
+              <<: *s2
+              synapse_model: NMDA_syn
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L23_h]
+            params:
+              <<: *s2
+              synapse_model: NMDA_syn
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L23_v]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L23_h]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L4_v]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+              mask: 
+                rectangular:
+                   lower_left: [-7.0,-7.0]
+                   upper_right: [7.0,7.0]
+              kernel: 
+                gaussian: 
+                  p_center: 0.05
+                  sigma: 1.936
+         -
+            <<: *s1
+            source_layer: [L4_h]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+              mask: 
+                rectangular:
+                   lower_left: [-7.0,-7.0]
+                   upper_right: [7.0,7.0]
+              kernel: 
+                gaussian: 
+                  p_center: 0.05
+                  sigma: 1.936
+         -
+            <<: *s1
+            source_layer: [L4_v]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+              mask: 
+                rectangular:
+                   lower_left: [-7.0,-7.0]
+                   upper_right: [7.0,7.0]
+              kernel: 
+                gaussian: 
+                  p_center: 0.05
+                  sigma: 1.936
+         -
+            <<: *s1
+            source_layer: [L4_h]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+              mask: 
+                rectangular:
+                   lower_left: [-7.0,-7.0]
+                   upper_right: [7.0,7.0]
+              kernel: 
+                gaussian: 
+                  p_center: 0.05
+                  sigma: 1.936
+         -
+            <<: *s1
+            source_layer: [L56_v]
+            target_layer: [L56_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L56_h]
+            target_layer: [L56_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L56_v]
+            target_layer: [L56_v]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L56_h]
+            target_layer: [L56_h]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+...

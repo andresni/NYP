@@ -1,0 +1,75 @@
+---                           ### Every YAML file starts with this
+simulation:                   ### This is the main structure for all things "simulation"
+    simulation_params:
+        sim_sequence: [initialize, settling, run, retina_input_on, run, retina_input_off, run]
+
+    states:
+        initialize: ### name of state, matches one in "sim_sequence"
+          state_length: 500.0
+          steps: 1
+          discard: False
+          neurons: ### "neurons" for neuron populations, or, "synapses" for connections.
+              -
+               layers: [M_1,M_2] ### If this in layer name. Be explicit for more explicit targeting
+               populations: [model1] ### If this in neuron population.
+               change: ### What should change
+                   V_m: [-1.0,a] ### a=additive change, p=percent change, c=constant, r=random between 0 and value
+              -
+               layers: [M]
+               populations: [model1,model2]
+               modulators: ### accepts "probability" for probabilistic change, and "properties" for specifics
+                  probability: 1.0 ### Probability from 0 to 1, i.e. 1 == all data.
+               change:
+                    V_m: [-1.0,a]
+              -
+               layers: [Retina]
+               populations: [Retina]
+               change:
+                    rate: [245.0,c]
+                    amplitude: [5.0,c]
+                    phase: ["[z*((len(value1)/40)/10.0) for z in range(len(value1))]" ,code] ### Can use custom code for changes
+
+        settling:
+           state_length: 400.0
+           discard: False
+           steps: 10
+           synapses:
+              -
+                synapse_type:
+                sources:
+                   layers: [M]
+                   populations: [model2]
+                targets:
+                   layers: [M]
+                   populations: [model1]
+                change:
+                   weight: [170.00,p] ### When using "p" for %, 1.50 = 150% of the original value is the target after x steps.
+
+
+        run:
+           state_length: 100.0
+           discard: False
+           steps: 1
+
+        retina_input_on:
+           state_length: 200.0
+           discard: False
+           steps: 10
+           neurons:
+              -
+               layers: [Retina]
+               populations: [Retina]
+               change:
+                   amplitude: [100.0,a]
+
+        retina_input_off:
+           state_length: 0.0
+           discard: False
+           steps: 1
+           neurons:
+              -
+                layers: [Retina]
+                populations: [Retina]
+                change:
+                     amplitude: [0.0,c]
+...

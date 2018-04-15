@@ -1,0 +1,125 @@
+---                           
+network:                      
+  trash: 
+      model1_std: &m1s       
+        rows: 40              
+        columns: 40          
+        extent: [40.0,40.0]      
+        edge_wrap: True
+        elements: [Ex_cort, Ex_cort, In_cort]   
+
+      model2_std: &m2s      
+        rows: 30
+        columns: 30
+        extent: [30.0,30.0]          
+        edge_wrap: True
+        elements: [Ex_cort, Ex_cort, In_cort]
+
+             
+  layers:
+      ### Input layers   
+      -                      
+        parameters:           
+            <<: *m1s         
+            elements: [Retina]  
+        name: Retina_layer 
+      -
+        name: extrinsic_areas
+        parameters:
+            rows: 1
+            columns: 1
+            extent: [1.0,1.0]
+            edge_wrap: True
+            elements: [extrinsic]  
+      -
+        name: MINI_layer
+        parameters:
+            rows: 1
+            columns: 1
+            extent: [1.0,1.0]
+            edge_wrap: True
+            elements: [MINI_neuron]
+      ### Primary Cortical
+      -
+        name: Vp_L23_v
+        parameters:
+            <<: *m1s
+      -
+        name: Vp_L23_h
+        parameters:
+            <<: *m1s
+      -
+        name: Vp_L4_v
+        parameters:
+            <<: *m1s
+      -
+        name: Vp_L4_h
+        parameters:
+            <<: *m1s
+      -
+        name: Vp_L56_v
+        parameters:
+            <<: *m1s
+      -
+        name: Vp_L56_h
+        parameters:
+            <<: *m1s
+      ### Secondary Cortical  
+      -
+        name: Vs_L23_v
+        parameters:
+            <<: *m2s
+      -
+        name: Vs_L23_h
+        parameters:
+            <<: *m2s
+      -
+        name: Vs_L4_v
+        parameters:
+            <<: *m2s
+      -
+        name: Vs_L4_h
+        parameters:
+            <<: *m2s
+      -
+        name: Vs_L56_v
+        parameters:
+            <<: *m2s
+      -
+        name: Vs_L56_h
+        parameters:
+            <<: *m2s
+      -
+        name: Vs_L23_c
+        parameters:
+            <<: *m2s
+      -
+        name: Vs_L4_c
+        parameters:
+            <<: *m2s
+      -
+        name: Vs_L56_c
+        parameters:
+            <<: *m2s
+      ### Thalamic layers
+      -
+        name: Tp_layer
+        parameters:
+            <<: *m1s
+            elements: [Ex_thal_primary,In_thal_primary]
+      -
+        name: Ts_layer
+        parameters:
+            <<: *m2s
+            elements: [Ex_thal_secondary,In_thal_secondary]
+      -
+        name: Rp_layer
+        parameters:
+            <<: *m1s
+            elements: [In_ret_primary]
+      -
+        name: Rs_layer
+        parameters:
+            <<: *m2s
+            elements: [In_ret_secondary]
+...                          

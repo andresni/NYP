@@ -1,0 +1,185 @@
+---
+network:
+  trash:
+   s1: &s1
+     source_area: Vp_
+     target_area: Vp_
+   s2: &s2
+     connection_type: divergent
+     synapse_model: GABA_A_syn
+     sources: {model: In_cort}
+     targets: {model: Ex_cort}
+     mask: 
+        rectangular:
+           lower_left: [-7.0,-7.0]
+           upper_right: [7.0,7.0]
+     kernel: 
+       gaussian: 
+          p_center: 0.25
+          sigma: 1.936
+     weights: 2.0
+     delays: 
+       normal: 
+          mean: 2.0
+          sigma: 0.25
+          min: 0.1
+
+  connections:
+     vp_gabaa:
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L23_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            params:
+              <<: *s2
+            source_layer: [L23_h]
+            target_layer: [L23_v]
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L23_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L23_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L23_v]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L23_v]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L23_h]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L23_h]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L4_v]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L4_h]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L4_v]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L4_h]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L4_v]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L4_h]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L4_v]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L4_h]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L56_v]
+            target_layer: [L56_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L56_h]
+            target_layer: [L56_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L56_v]
+            target_layer: [L56_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L56_h]
+            target_layer: [L56_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L56_v]
+            target_layer: [L56_v]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L56_h]
+            target_layer: [L56_v]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L56_v]
+            target_layer: [L56_h]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L56_h]
+            target_layer: [L56_h]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+...

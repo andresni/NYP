@@ -1,0 +1,35 @@
+---                           ### Every YAML file starts with this
+network:                   ### This is the main structure for all things "simulation"
+ recorders:                   ### This is the "recorders" substructure
+  types:                      ### This contains the different recorder types in a listed format
+    -                         ### Start of list item
+        type: multimeter      ### Type of recorder, must exist in NEST
+        name: RecordingNode1  ### Name of the new recorder that you here create
+        params:               ### Contains structured key-value pairs of the parameters of the new recorder
+             interval: 0.1    ### Recording interval in ms
+             record_from: [V_m, I_syn_ex, I_syn_in] ### Which properties to record
+             record_to: [memory] ### Save temp data to disk (file) or memory (memory)
+
+    - 
+        type: multimeter
+        name: RecordingNode2
+        params:
+             interval: 0.1 
+             record_from: [rate] 
+             record_to: [file] 
+
+
+  record_from:                ### Here comes where to attach the recorders specified above
+    -                         ### Start of list item
+        layer: Retina_layer   ### Name of the layer you want to record from (see layers.yml)
+        population: Retina    ### Name of neuron population you want to record from (see layers.yml)
+        recorder: RecordingNode2 ### Name of the recorder, specified above, you want to use
+    -
+        layer: M_1_layer
+        population: model1
+        recorder: RecordingNode1
+    -
+        layer: M_2_layer
+        population: model2
+        recorder: RecordingNode1
+...                           ### Every YAML file ends with this

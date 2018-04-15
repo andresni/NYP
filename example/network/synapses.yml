@@ -1,0 +1,15 @@
+---                           ### Every YAML file starts with this
+network:                      ### This is the main structure of all things "network"
+  trash: &anchor              ### Elements in "trash" will be thrown. "&anchor" means that when you use "*anchor" you inherit everything one level inside.
+      type: static_synapse    ### This is a specific synapse type (must exist in NEST)
+  synapses:                   ### Here we can list all the different synapse types we want in our network
+      -                       ### "-" indicates the start of a new list item
+         <<: *anchor          ### Here we inherit from "&anchor", specifically we inherit the key "type" with the value "static_synapse"
+         name: stat_syn       ### Here we define the name of this new synapse type (only needed when some parameters are set to non-default values)
+         parameters:          ### Here we can use key-value pairs to define new parameters
+             delay: 5.0       ### Here we override the default delay
+      -
+         name: tso_syn
+         type: tsodyks_synapse
+         parameters: {}       ### If we don't want to update any parameters, use an empty key-value pair dictionary "{}". An empty list is "[]".
+...                           ### Every YAML file ends with this

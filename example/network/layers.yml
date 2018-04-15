@@ -1,0 +1,36 @@
+---                           ### Every YAML file starts with this
+network:                      ### This is the main structure of all things "network"
+  trash: &anchor              ### Elements in "trash" will be thrown. "&anchor" means that when you use "*anchor" you inherit everything one level inside.
+      model1_std: &m1s        ### Here we specify a specific anchor for use later
+        rows: 30              ### Here we specify the number of rows in our layer
+        columns: 30           ### Here we specify the number of columns in our layer
+        extent: [30.0,30.0]   ### Here we give a list of the number of nodes to fit vertically and horizontally in our layer.
+        edge_wrap: True       ### Here we specify that the layer should connect on all sides with itself, i.e. loop around.
+
+      model2_std: &m2s        ### Here we designate another anchor for use later
+        rows: 30
+        columns: 30
+        extent:               ### This is another way to make a list
+            - 30.0            ### A list entry
+            - 30.0
+        edge_wrap: True
+
+  layers:                     ### And here come the layers
+      -                       ### A list entry
+        parameters:           ### Parameters for our layer
+            <<: *m1s          ### Here we inherit from above
+            elements: [Retina] ### Here we specify the elements, aka. the neurons we want in our layer
+        name: Retina_layer    ### Here we name the layer so it can be found later.
+        
+      -
+        parameters:
+            <<: *m1s
+            elements: [model1, model2] ### It's possible to have several elements in the layer. They will then stack.
+        name: M_1_layer
+
+      -
+        parameters:
+            <<: *m2s
+            elements: [model1, model2]
+        name: M_2_layer
+...                           ### Every YAML file ends with this

@@ -1,0 +1,52 @@
+---                           ### Every YAML file starts with this
+network:                      ### This is the main structure of all things "network"
+  trash: &anchor              ### Elements in "trash" will be thrown. "&anchor" means that when you use "*anchor" you inherit everything one level inside.
+   1: &s1                     ### Here we specify a specific anchor to be used later. Several anchors can be made by using for example 1, 2, 3...
+     source_area: M_          ### Prefix of source areas. Will be attached to each "source_layer" -> M_1_layer, M_2_layer,... See layers for your names.
+     target_area: M_          ### Prefix of target areas.
+     source_layer: [1_layer, 2_layer] ### Source layer specify which layers connections should go from
+     target_layer: [2_layer, 1_layer] ### Target layer specify which layers connections should go to
+   2: &s2
+     connection_type: divergent ### Connection type specify whether connections should go from one node to many targets, or from many sources to one target
+     synapse_model: stat_syn  ### The synapse model to be used to make these connections, see synapses for the models you made.
+     mask:                    ### Here we specify mask. Can take many forms
+       circular:              ### Here we specify a circular mask
+          radius: 12.0        ### Here we specify the radius of the circular mask (in units, i.e. a radius of 12 means 12 steps out.
+     kernel:                  ### Here we specify probabilities for connecting to each neuron within the mask, can take many distributions
+       gaussian:              ### Here we specify a gaussian distribitued probability curve
+          p_center: 1.00      ### Probability at the center of the distribution (i.e. origo of mask)
+          sigma: 1.936        ### Standard deviation of the distribution (in units)
+     weights: 4.0             ### Here we specify fixed weights, in stead of a distribution, i.e. all connections have this weight
+     delays:                  ### Here we specify delays
+       normal:                ### Here we specify that delays should follow a normal distribution
+          mean: 2.0           ### Here we specify the mean delay (in ms)
+          sigma: 0.25         ### Here we specify the standard deviation of delays (in ms)
+          min: 0.1            ### Here we specify the minimum delay. Set this to the simulation resolution to avoid possible simulation inaccuracies
+
+  connections:               ### Here comes the connections
+       connection_group_1:    ### Here's an identifier of this batch of connections. Exact name not important as long as it's unique
+         -
+            <<: *s1           ### Inheriting the standard1 template (above) and updating it with what's below
+            params:
+              <<: *s2         ### Inheriting the params1 template (above) and updating it with what's below
+              sources: {model: model1} ### Here we specify the source neuron models within the layers
+              targets: {model: model2} ### Here we specify the target neuron models within the layers
+              synapse_model: stat_syn
+              connection_type: convergent
+         -
+            <<: *s1
+            params:
+              <<: *s2
+              sources: {model: model2}
+              targets: {model: model1}
+         -
+            source_area: Retina_
+            target_area: M_
+            source_layer: [layer]
+            target_layer: [2_layer]
+            params:
+              <<: *s2
+              synapse_model: stat_syn
+              sources: {model: Retina}
+              targets: {model: model2}
+...                           ### Every YAML file ends with this
