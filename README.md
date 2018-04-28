@@ -40,18 +40,29 @@ Thierry Nieus (2), Ricardo Murphy (1), Hans E. Plesser (3,4), Sean Hill (5,6), W
 
 
 (1) Brain Signalling Group, Department of Physiology, Institute of Basic Medical Sciences, University of Oslo, Oslo, Norway
+
 (2) Department of Biomedical and Clinical Sciences "Luigi Sacco" University of Milan, Milan, Italy
+
 (3) Faculty of Science and Technology, Norwegian University of Life Sciences, Ås, Norway
+
 (4) Institute for Neuroscience (INM-6), Jülich Research Centre, Jülich, Germany
+
 (5) Krembil Centre for Neuroinformatics, CAMH, Toronto, Canada 
+
 (6) Blue Brain Project, EPFL, Geneva, Switzerland
+
 (7) Wisconsin Institute for Sleep and Consciousness, University of Wisconsin-Madison, USA
 
 ***Addendum:***
+
 To use certain neuron models necessary for succesfully running the attached "ht_model" you'll need to add certain neuron models to your local NEST installation.
-Step 1: copy&replace the contents of the "NEST_neuron_models" folder into your pre-compiled NEST folder structure. That is, the "models" and "nestkernel" subfolders should be copied into your NEST source folder. Accept any prompts for replacement. Then run your standard installation routine.
+
+Copy&replace the contents of the "NEST_neuron_models" folder into your pre-compiled NEST folder structure. That is, the "models" and "nestkernel" subfolders should be copied into your NEST source folder. Accept any prompts for replacement. Then run your standard installation routine.
+
 To verify that everything has worked corretly (in python):
+
 import nest
+
 nest.GetDefaults("ht_neuron_sh") -> should print a range of neuron parameters.
 
 
