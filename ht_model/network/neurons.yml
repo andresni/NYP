@@ -48,8 +48,8 @@ network:
         type: sinusoidal_poisson_generator
         parameters:
            amplitude: 0.0
-           rate: 45.0
-           frequency: 4.0
+           rate: 40.0
+           frequency: 8.0
            phase: 0.0
       -
         name: MINI_neuron
@@ -159,7 +159,7 @@ network:
            tau_theta: 1.0
            tau_spike: 0.75
            t_ref: 1.0
-           g_peak_NaP: 0.25
+           g_peak_NaP: 0.1
            g_peak_T: 1.0
            g_peak_KNa: 0.0
 ...                          
