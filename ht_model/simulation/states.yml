@@ -25,9 +25,9 @@ simulation:
                layers: [Retina]
                populations: [Retina]
                change:
-                    rate: [45.0,c]
+                    rate: [40.0,c]
                     amplitude: [0.0,c]
-                    phase: ["[z*((len(value1)/20)/50.0) for z in range(len(value1))]" ,code] ### Can use custom code for changes
+                    phase: ["[-z*((len(value1)/40)/50.0) for z in range(len(value1))]" ,code] ### Can use custom code for changes
 
         transition:
            state_length: 1000.0
@@ -100,7 +100,7 @@ simulation:
                layers: [Retina]
                populations: [Retina]
                change:
-                   amplitude: [200.0,c]
+                   amplitude: [250.0,c]
 
         retina_input_off:
            state_length: 0.0
