@@ -1,0 +1,105 @@
+---
+network:
+  trash:
+   s1: &s1
+     source_area: [Vp2_]
+     target_area: [Vs2_]
+   s2: &s2
+     connection_type: convergent
+     synapse_model: AMPA_syn
+     sources: {model: Ex_cort}
+     targets: {model: Ex_cort}
+     kernel: 0.8
+     weights: 1.0
+     delays: 
+       normal: 
+          mean: 3.0
+          sigma: 0.25
+          min: 0.1
+
+  connections:
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+              mask:
+                rectangular:
+                   lower_left: [-1.0,-9.0]
+                   upper_right: [1.0,9.0]
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+              mask:
+                rectangular:
+                   lower_left: [-9.0,-1.0]
+                   upper_right: [9.0,1.0]
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L4_c]
+            params:
+              <<: *s2
+              mask:
+                rectangular:
+                   lower_left: [-1.0,-4.0]
+                   upper_right: [1.0,4.0]
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L4_c]
+            params:
+              <<: *s2
+              mask:
+                rectangular:
+                   lower_left: [-4.0,-1.0]
+                   upper_right: [4.0,1.0]
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+              mask:
+                rectangular:
+                   lower_left: [-1.0,-9.0]
+                   upper_right: [1.0,9.0]
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+              mask:
+                rectangular:
+                   lower_left: [-9.0,-1.0]
+                   upper_right: [9.0,1.0]
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L4_c]
+            params:
+              <<: *s2
+              mask:
+                rectangular:
+                   lower_left: [-1.0,-4.0]
+                   upper_right: [1.0,4.0]
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L4_c]
+            params:
+              <<: *s2
+              mask:
+                rectangular:
+                   lower_left: [-4.0,-1.0]
+                   upper_right: [4.0,1.0]
+              targets: {model: In_cort}
+...

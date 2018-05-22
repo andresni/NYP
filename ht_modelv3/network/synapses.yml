@@ -1,0 +1,39 @@
+---                          
+network:                       
+  trash:    
+  synapses:                   
+      -                                
+         name: AMPA_syn   
+         type: ht_synapse    
+         parameters:         
+             receptor_type: 1      
+             delta_P: 0.0625
+      -
+         name: NMDA_syn
+         type: ht_synapse
+         parameters:
+             receptor_type: 2
+             delta_P: 0.0625
+      -  
+         name: GABA_A_syn
+         type: ht_synapse
+         parameters:
+             receptor_type: 3
+             delta_P: 0.0625
+      -
+         name: GABA_B_syn
+         type: ht_synapse
+         parameters:
+             receptor_type: 4
+             delta_P: 0.0625
+      -
+         name: AMPA_s_syn
+         type: static_synapse
+         parameters:
+             receptor_type: 1
+      -
+         name: MINI_syn
+         type: static_synapse
+         parameters:
+             receptor_type: 5
+...                          

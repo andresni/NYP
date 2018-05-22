@@ -1,0 +1,49 @@
+V0.2
+- Added flexibility in how connections are listed. No longer unique names for each list required
+- Retooled package to be centered around the "network" object, which contains all the information needed and sub functions required to
+  build, simulate, and produce output.
+- Folder structure not important anymore (all YML files one level within experiment folder will be found i.e. myNetwork/ymlfiles/... & myNetwork/ymlfiles/connsV1)
+- Added possibility of listing more source and target areas to increase efficiency (i.e. need equal number in each list, one-to-one relationship, see doc)
+- Fixed proper output path naming
+
+V0.1
+- Initial release
+
+TODO:
+# Implement print from text field functions (canceled for now)
+# Implement progress bar functions (done)
+# ^ for other areas not just simulation
+# Add informative prints to user
+# Add error log, even if things run just fine
+# Implement data output and storage to mat file functions (DONE)
+# Expand to multiple file formats
+# Implement graphical output functions
+    # Rasters DONE
+    # Average currents DONE
+    # Movies
+    # Firing rates
+    # More
+# Implement results to pdf functions
+# Implement specific checks:
+    # Simulation times multiple of resolution, (x/steps*100)/resolution = INTEGER
+# Make a network object with everything, and that has all the functions - DONE
+    # Including a run all function - DONE
+# Documentation
+# Fix "discard" option on sim_states instead
+# Optional receptor type specification in neurons - DONE
+    # Fix so that you can change multiple synapse parameters - DONE
+# Fix 2D and 3D output formats
+# Date format for output
+# Fix a better output system
+# Multiple outputs with parameter lists
+# Possibility to iterate over stuff
+# Fix better progress output
+# Discard not working
+# Save one file per recorder - DONE
+# Fix that output thing - DONE
+# Make it more memory efficient in outpus - DONE
+# Move "name" from outputs to states
+# Possibility to record synapse weights
+# Fix so that layers can also be more generally generated
+# Look into free layers (or even free 3d layers)
+# Look into rules like "20% of thalamic cells are matrix cells with specific connectivity"

@@ -1,0 +1,255 @@
+---
+network:
+  trash:
+   s1: &s1
+     source_area: [Vp2_]
+     target_area: [Tp2_]
+     target_layer: [layer]
+   s2: &s2
+     connection_type: divergent
+     synapse_model: AMPA_syn
+     sources: {model: Ex_cort}
+     mask: 
+        rectangular:
+           lower_left: [-5.0,-5.0]
+           upper_right: [5.0,5.0]
+     kernel:
+        gaussian:
+           p_center: 0.5
+           sigma: 1.936
+     weights: 1.0
+     delays: 
+       normal: 
+          mean: 8.0
+          sigma: 0.5
+          min: 0.1
+
+  connections:
+         -
+            <<: *s1
+            source_layer: [L56_v]
+            params:
+              <<: *s2
+              targets: {model: Ex_thal_primary}
+         -
+            <<: *s1
+            source_layer: [L56_h]
+            params:
+              <<: *s2
+              targets: {model: Ex_thal_primary}
+         -
+            <<: *s1
+            source_layer: [L56_v]
+            params:
+              <<: *s2
+              targets: {model: In_thal_primary}
+         -
+            <<: *s1
+            source_layer: [L56_h]
+            params:
+              <<: *s2
+              targets: {model: In_thal_primary}
+         -
+            <<: *s1
+            target_area: [Rp2_]
+            source_layer: [L56_v]
+            params:
+              <<: *s2
+              targets: {model: In_ret_primary}
+              weights: 2.5
+         -
+            <<: *s1
+            target_area: [Rp2_]
+            source_layer: [L56_h]
+            params:
+              <<: *s2
+              targets: {model: In_ret_primary}
+              weights: 2.5
+         -
+            <<: *s1
+            source_area: [Vs2_]
+            target_area: [Ts2_]
+            source_layer: [L56_v]
+            params:
+              <<: *s2
+              targets: {model: Ex_thal_secondary}
+              kernel:
+                 gaussian:
+                    p_center: 0.4
+                    sigma: 1.936
+              mask: 
+                rectangular:
+                   lower_left: [-2.0,-2.0]
+                   upper_right: [2.0,2.0]
+         -
+            <<: *s1
+            source_area: [Vs2_]
+            target_area: [Ts2_]
+            source_layer: [L56_h]
+            params:
+              <<: *s2
+              targets: {model: Ex_thal_secondary}
+              kernel:
+                 gaussian:
+                    p_center: 0.4
+                    sigma: 1.936
+              mask: 
+                rectangular:
+                   lower_left: [-2.0,-2.0]
+                   upper_right: [2.0,2.0]
+         -
+            <<: *s1
+            source_area: [Vs2_]
+            target_area: [Ts2_]
+            source_layer: [L56_c]
+            params:
+              <<: *s2
+              targets: {model: Ex_thal_secondary}
+              kernel:
+                 gaussian:
+                    p_center: 0.4
+                    sigma: 1.936
+              mask: 
+                rectangular:
+                   lower_left: [-2.0,-2.0]
+                   upper_right: [2.0,2.0]
+         -
+            <<: *s1
+            source_area: [Vs2_]
+            target_area: [Ts2_]
+            source_layer: [L56_v]
+            params:
+              <<: *s2
+              targets: {model: In_thal_secondary}
+              kernel:
+                 gaussian:
+                    p_center: 0.4
+                    sigma: 1.936
+              mask: 
+                rectangular:
+                   lower_left: [-2.0,-2.0]
+                   upper_right: [2.0,2.0]
+         -
+            <<: *s1
+            source_area: [Vs2_]
+            target_area: [Ts2_]
+            source_layer: [L56_h]
+            params:
+              <<: *s2
+              targets: {model: In_thal_secondary}
+              kernel:
+                 gaussian:
+                    p_center: 0.4
+                    sigma: 1.936
+              mask: 
+                rectangular:
+                   lower_left: [-2.0,-2.0]
+                   upper_right: [2.0,2.0]
+         -
+            <<: *s1
+            source_area: [Vs2_]
+            target_area: [Ts2_]
+            source_layer: [L56_c]
+            params:
+              <<: *s2
+              targets: {model: In_thal_secondary}
+              kernel:
+                 gaussian:
+                    p_center: 0.4
+                    sigma: 1.936
+              mask: 
+                rectangular:
+                   lower_left: [-2.0,-2.0]
+                   upper_right: [2.0,2.0]
+         -
+            <<: *s1
+            source_area: [Vs2_]
+            target_area: [Rs2_]
+            source_layer: [L56_v]
+            params:
+              <<: *s2
+              targets: {model: In_ret_secondary}
+              weights: 2.5
+         -
+            <<: *s1
+            source_area: [Vs2_]
+            target_area: [Rs2_]
+            source_layer: [L56_h]
+            params:
+              <<: *s2
+              targets: {model: In_ret_secondary}
+              weights: 2.5
+         -
+            <<: *s1
+            source_area: [Vs2_]
+            target_area: [Rs2_]
+            source_layer: [L56_c]
+            params:
+              <<: *s2
+              targets: {model: In_ret_secondary}
+              weights: 2.5
+         -
+            <<: *s1
+            target_area: [Ts2_]
+            source_layer: [L56_v]
+            params:
+              <<: *s2
+              targets: {model: Ex_thal_secondary}
+              kernel:
+                 gaussian:
+                     p_center: 1.0
+                     sigma: 1.936
+              weights: 5.0
+              mask: 
+                rectangular:
+                   lower_left: [-2.0,-2.0]
+                   upper_right: [2.0,2.0]
+         -
+            <<: *s1
+            target_area: [Ts2_]
+            source_layer: [L56_h]
+            params:
+              <<: *s2
+              targets: {model: Ex_thal_secondary}
+              kernel:
+                 gaussian:
+                     p_center: 1.0
+                     sigma: 1.936
+              weights: 5.0
+              mask: 
+                rectangular:
+                   lower_left: [-2.0,-2.0]
+                   upper_right: [2.0,2.0]
+         -
+            <<: *s1
+            target_area: [Ts2_]
+            source_layer: [L56_v]
+            params:
+              <<: *s2
+              targets: {model: In_thal_secondary}
+              kernel:
+                 gaussian:
+                     p_center: 1.0
+                     sigma: 1.936
+              weights: 5.0
+              mask: 
+                rectangular:
+                   lower_left: [-2.0,-2.0]
+                   upper_right: [2.0,2.0]
+         -
+            <<: *s1
+            target_area: [Ts2_]
+            source_layer: [L56_h]
+            params:
+              <<: *s2
+              targets: {model: In_thal_secondary}
+              kernel:
+                 gaussian:
+                     p_center: 1.0
+                     sigma: 1.936
+              weights: 5.0
+              mask: 
+                rectangular:
+                   lower_left: [-2.0,-2.0]
+                   upper_right: [2.0,2.0]
+...

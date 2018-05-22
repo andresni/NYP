@@ -1,0 +1,115 @@
+---
+network:
+  trash:
+   s1: &s1
+     source_area: [Rp_]
+     target_area: [Tp_]
+     source_layer: [layer]
+     target_layer: [layer]
+   s2: &s2
+     connection_type: divergent
+     synapse_model: GABA_A_syn
+     sources: {model: In_ret_primary}
+     targets: {model: In_thal_primary}
+     mask: 
+       rectangular:
+            lower_left: [-12.0,-12.0]
+            upper_right: [12.0,12.0]
+     kernel: 
+        gaussian:
+            p_center: 0.5
+            sigma: 1.936
+     weights: 1.0
+     delays: 
+       normal: 
+          mean: 2.0
+          sigma: 0.25
+          min: 0.1
+
+  connections:
+         -
+            <<: *s1
+            target_area: [Rp_]
+            params:
+              <<: *s2
+              targets: {model: In_ret_primary}
+              delays:
+                 normal:
+                     mean: 1.0
+                     sigma: 0.25
+                     min: 0.1
+         -
+            <<: *s1
+            source_area: [Rs_]
+            target_area: [Rs_]
+            params:
+              <<: *s2
+              sources: {model: In_ret_secondary}
+              targets: {model: In_ret_secondary}
+              delays:
+                 normal:
+                     mean: 1.0
+                     sigma: 0.25
+                     min: 0.1
+         -
+            <<: *s1
+            params:
+              <<: *s2
+              targets: {model: Ex_thal_primary}
+              kernel:
+                 gaussian:
+                     p_center: 0.15
+                     sigma: 1.936
+         -
+            <<: *s1
+            params:
+              <<: *s2
+              synapse_model: GABA_B_syn
+              targets: {model: Ex_thal_primary}
+              kernel:
+                 gaussian:
+                     p_center: 0.05
+                     sigma: 1.936
+         -
+            <<: *s1
+            params:
+              <<: *s2
+              kernel:
+                 gaussian:
+                     p_center: 0.15
+                     sigma: 1.936
+         -
+            <<: *s1
+            params:
+              <<: *s2
+              synapse_model: GABA_B_syn
+              targets: {model: In_thal_primary}
+              kernel:
+                 gaussian:
+                     p_center: 0.05
+                     sigma: 1.936
+         -
+            <<: *s1
+            source_area: [Rs_]
+            target_area: [Ts_]
+            params:
+              <<: *s2
+              sources: {model: In_ret_secondary}
+              targets: {model: Ex_thal_secondary}
+              kernel:
+                 gaussian:
+                     p_center: 0.1
+                     sigma: 1.936
+         -
+            <<: *s1
+            source_area: [Rs_]
+            target_area: [Ts_]
+            params:
+              <<: *s2
+              sources: {model: In_ret_secondary}
+              targets: {model: In_thal_secondary}
+              kernel:
+                 gaussian:
+                     p_center: 0.1
+                     sigma: 1.936
+...

@@ -1,0 +1,85 @@
+---
+network:
+  trash:
+   s1: &s1
+     source_area: [Vp_]
+     target_area: [Vp2_]
+   s2: &s2
+     connection_type: divergent
+     synapse_model: AMPA_syn
+     sources: {model: Ex_cort}
+     targets: {model: Ex_cort}
+     kernel: 0.2
+     weights: 2.0
+     mask:
+        rectangular:
+            lower_left: [-5.0,-6.0]
+            upper_right: [6.0,5.0]
+     delays: 
+       normal: 
+          mean: 12.0
+          sigma: 4.0
+          min: 0.1
+
+  connections:
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+              synapse_model: NMDA_syn
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+              synapse_model: NMDA_syn
+              targets: {model: In_cort}
+              mask:
+                rectangular:
+                   lower_left: [-1.0,-9.0]
+                   upper_right: [1.0,9.0]
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+              synapse_model: NMDA_syn
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+              synapse_model: NMDA_syn
+              targets: {model: In_cort}
+...

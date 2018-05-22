@@ -1,0 +1,61 @@
+---
+network:
+  trash:
+   s1: &s1
+     source_area: [Vp_,Vp2_]
+     target_area: [Vp_,Vp2_]
+   s2: &s2
+     connection_type: divergent
+     synapse_model: GABA_B_syn
+     sources: {model: Ex_cort}
+     targets: {model: Ex_cort}
+     mask: 
+       rectangular: 
+          lower_left: [-1.0,-1.0]
+          upper_right: [1.0,1.0]
+     kernel: 0.25
+     weights: 1.0
+     delays: 
+       normal: 
+          mean: 4.0
+          sigma: 0.25
+          min: 0.1
+
+  connections:
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L23_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L23_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L4_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L4_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L23_v]
+            target_layer: [L56_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L23_h]
+            target_layer: [L56_h]
+            params:
+              <<: *s2
+...

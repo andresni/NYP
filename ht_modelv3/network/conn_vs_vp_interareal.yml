@@ -1,0 +1,84 @@
+---
+network:
+  trash:
+   s1: &s1
+     source_area: [Vs_,Vs2_]
+     target_area: [Vp_,Vp2_]
+   s2: &s2
+     connection_type: divergent
+     synapse_model: NMDA_syn
+     sources: {model: Ex_cort}
+     targets: {model: Ex_cort}
+     mask: 
+        rectangular:
+            lower_left: [-12.0,-12.0]
+            upper_right: [12.0,12.0]
+     kernel:
+        gaussian:
+            p_center: 0.1
+            sigma: 1.936
+     weights: 1.0
+     delays: 
+       normal: 
+          mean: 6.0
+          sigma: 0.5
+          min: 0.1
+
+  connections:
+         -
+            <<: *s1
+            source_layer: [L56_v]
+            target_layer: [L23_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L56_h]
+            target_layer: [L23_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L56_c]
+            target_layer: [L23_v]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L56_c]
+            target_layer: [L23_h]
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_layer: [L56_v]
+            target_layer: [L23_v]
+            params:
+              <<: *s2
+              synapse_model: AMPA_syn
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L56_h]
+            target_layer: [L23_h]
+            params:
+              <<: *s2
+              synapse_model: AMPA_syn
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L56_c]
+            target_layer: [L23_v]
+            params:
+              <<: *s2
+              synapse_model: AMPA_syn
+              targets: {model: In_cort}
+         -
+            <<: *s1
+            source_layer: [L56_c]
+            target_layer: [L23_h]
+            params:
+              <<: *s2
+              synapse_model: AMPA_syn
+              targets: {model: In_cort}
+...

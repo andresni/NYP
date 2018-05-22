@@ -1,0 +1,102 @@
+---
+network:
+  trash:
+   s1: &s1
+     source_area: [Tp2_]
+     target_area: [Tp2_]
+     source_layer: [layer]
+     target_layer: [layer]
+   s2: &s2
+     connection_type: divergent
+     synapse_model: GABA_A_syn
+     sources: {model: In_thal_primary}
+     targets: {model: In_thal_primary}
+     mask: 
+        rectangular:
+           lower_left: [-2.0,-2.0]
+           upper_right: [2.0,2.0]
+     kernel: 
+        gaussian:
+            p_center: 0.25
+            sigma: 1.936
+     weights: 1.0
+     delays: 
+       normal: 
+          mean: 1.0
+          sigma: 0.25
+          min: 0.1
+
+  connections:
+         -
+            <<: *s1
+            target_area: [Rp2_]
+            params:
+              <<: *s2
+              sources: {model: Ex_thal_primary}
+              targets: {model: In_ret_primary}
+              synapse_model: AMPA_syn
+              weights: 2.0
+              delays:
+                 normal:
+                     mean: 2.0
+                     sigma: 0.25
+                     min: 0.1
+              kernel: 
+                 gaussian:
+                     p_center: 1.0
+                     sigma: 1.936
+         -
+            <<: *s1
+            params:
+              <<: *s2
+              targets: {model: Ex_thal_primary}
+         -
+            <<: *s1
+            params:
+              <<: *s2
+         -
+            <<: *s1
+            source_area: [Ts2_]
+            target_area: [Rs2_]
+            params:
+              <<: *s2
+              sources: {model: Ex_thal_secondary}
+              targets: {model: In_ret_secondary}
+              synapse_model: AMPA_syn
+              weights: 12.0
+              delays:
+                 normal:
+                     mean: 2.0
+                     sigma: 0.25
+                     min: 0.1
+              kernel: 
+                 gaussian:
+                     p_center: 1.0
+                     sigma: 1.936
+         -
+            <<: *s1
+            source_area: [Ts2_]
+            target_area: [Ts2_]
+            params:
+              <<: *s2
+              sources: {model: In_thal_secondary}
+              targets: {model: Ex_thal_secondary}
+              weights: 6.0
+              kernel: 
+                 gaussian:
+                     p_center: 0.3
+                     sigma: 1.936
+         -
+            <<: *s1
+            source_area: [Ts2_]
+            target_area: [Ts2_]
+            params:
+              <<: *s2
+              sources: {model: In_thal_secondary}
+              targets: {model: In_thal_secondary}
+              weights: 6.0
+              kernel: 
+                 gaussian:
+                     p_center: 0.3
+                     sigma: 1.936
+...

@@ -1,0 +1,115 @@
+---
+simulation:
+    simulation_params:
+        sim_sequence: [initialize, run, transition, run, run]
+
+    states:
+        initialize: ### name of state, matches one in "sim_sequence"
+          state_length: 100.0
+          steps: 1
+          discard: False
+          neurons: ### "neurons" for neuron populations, or, "synapses" for connections.
+              -
+               layers: [p_,s_] ### If this in layer name. Be explicit for more explicit targeting
+               populations: [Ex_,In_] ### If this in neuron population.
+               change: ### What should change
+                   V_m: [[-70.0,-50.0],r] ### a=additive change, p=percent change, c=constant, r=random between 0 and value
+              -
+               layers: [L56]
+               populations: [Ex_]
+               modulators: ### accepts "probability" for probabilistic change, and "properties" for specifics
+                  probability: 0.30 ### Probability from 0 to 1, i.e. 1 == all data.
+               change:
+                    g_peak_h: [1.0,c]
+              -
+               layers: [Retina]
+               populations: [Retina]
+               change:
+                    rate: [40.0,c]
+                    amplitude: [0.0,c]
+                    phase: ["[-z*((len(value1)/40)/50.0) for z in range(len(value1))]" ,code] ### Can use custom code for changes
+
+        transition:
+           state_length: 100.0
+           discard: False
+           steps: 1
+           neurons:
+              -
+                layers: [_L]
+                populations: [Ex_cort]
+                change:
+                      g_KL: [2.0,c]
+                      g_peak_AMPA: [0.0375,c]
+                      g_peak_NaP: [1.7,c]
+                      g_peak_KNa: [1.0,c]
+              -
+                layers: [_L]
+                populations: [In_cort]
+                change:
+                      g_KL: [2.0,c]
+                      g_peak_AMPA: [0.0375,c]
+                      g_peak_NaP: [1.2,c]
+                      g_peak_KNa: [1.0,c]
+              -
+                layers: [Tp_]
+                populations: [Ex_thal_primary]
+                change:
+                      g_KL: [2.0,c]
+                      g_peak_NaP: [1.1,c]
+              -
+                layers: [Tp_]
+                populations: [In_thal_primary]
+                change:
+                      g_KL: [2.0,c]
+                      g_peak_NaP: [1.2,c]
+              -
+                layers: [Ts_]
+                populations: [thal_secondary]
+                change:
+                      g_KL: [2.0,c]
+                      g_peak_NaP: [0.8,c]
+              -
+                layers: [Rp_]
+                populations: [In_ret_primary]
+                change:
+                      g_KL: [2.0,c]
+                      g_peak_NaP: [1.1,c]
+              -
+                layers: [Rs_]
+                populations: [In_ret_secondary]
+                change:
+                      g_KL: [2.0,c]
+                      g_peak_NaP: [0.6,c]
+              -
+                layers: [extrinsic]
+                populations: [extrinsic]
+                change:
+                      rate: [0.0,c]
+
+        run:
+           state_length: 100.0
+           discard: False
+           steps: 1
+
+        retina_input_on:
+           state_length: 400.0
+           discard: False
+           steps: 1
+           neurons:
+              -
+               layers: [Retina]
+               populations: [Retina]
+               change:
+                   amplitude: [250.0,c]
+
+        retina_input_off:
+           state_length: 0.0
+           discard: False
+           steps: 1
+           neurons:
+              -
+                layers: [Retina]
+                populations: [Retina]
+                change:
+                     amplitude: [0.0,c]
+...
