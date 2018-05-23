@@ -2,8 +2,8 @@
 network:
   trash:
    s1: &s1
-     source_area: Vp_
-     target_area: Vs_
+     source_area: [Vp_]
+     target_area: [Vs_]
    s2: &s2
      connection_type: convergent
      synapse_model: AMPA_syn
@@ -18,7 +18,6 @@ network:
           min: 0.1
 
   connections:
-     vp_vs_interareal:
          -
             <<: *s1
             source_layer: [L23_v]

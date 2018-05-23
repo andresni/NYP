@@ -2,8 +2,8 @@
 network:
   trash:
    s1: &s1
-     source_area: Vs_
-     target_area: Vs_
+     source_area: [Vs_]
+     target_area: [Vs_]
    s2: &s2
      connection_type: divergent
      synapse_model: AMPA_syn
@@ -25,7 +25,6 @@ network:
           min: 0.1
 
   connections:
-     vs_horizontal_intralaminar:
          -
             <<: *s1
             source_layer: [L23_v]

@@ -2,8 +2,8 @@
 network:
   trash:
    s1: &s1
-     source_area: Tp_
-     target_area: Vp_
+     source_area: [Tp_]
+     target_area: [Vp_]
      source_layer: [layer]
    s2: &s2
      connection_type: convergent
@@ -23,7 +23,6 @@ network:
           min: 0.1
 
   connections:
-     thalamocort_pri:
          -
             <<: *s1
             target_layer: [L4_v]

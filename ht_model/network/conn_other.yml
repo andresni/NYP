@@ -9,10 +9,9 @@ network:
             sigma: 1.0
             min: 0.1
   connections:
-     other:
           -
-            source_area: Retina_
-            target_area: Tp_
+            source_area: [Retina_]
+            target_area: [Tp_]
             source_layer: [layer]
             target_layer: [layer]
             params:
@@ -30,8 +29,8 @@ network:
                      sigma: 1.936
               weights: 5.0
           -
-            source_area: Retina_
-            target_area: Tp_
+            source_area: [Retina_]
+            target_area: [Tp_]
             source_layer: [layer]
             target_layer: [layer]
             params:
@@ -49,304 +48,46 @@ network:
                      sigma: 1.936
               weights: 5.0
           -
-            source_area: extrinsic_
-            target_area: Vp_
+            source_area: [extrinsic_]
+            target_area: [Vp_]
             source_layer: [areas]
-            target_layer: [L23_v]
+            target_layer: [L23_v,L23_h,L4_v,L4_h,L56_v,L56_h]
             params:
               <<: *s2
               synapse_model: AMPA_s_syn
               targets: {model: Ex_cort}
               weights: 10.0
           -
-            source_area: extrinsic_
-            target_area: Vp_
+            source_area: [extrinsic_]
+            target_area: [Vs_]
             source_layer: [areas]
-            target_layer: [L23_h]
+            target_layer: [L23_v,L23_h,L23_c,L4_v,L4_h,L4_c,L56_v,L56_h,L56_c]
             params:
               <<: *s2
               synapse_model: AMPA_s_syn
               targets: {model: Ex_cort}
               weights: 10.0
           -
-            source_area: extrinsic_
-            target_area: Vp_
-            source_layer: [areas]
-            target_layer: [L4_v]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vp_
-            source_layer: [areas]
-            target_layer: [L4_h]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vp_
-            source_layer: [areas]
-            target_layer: [L56_v]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vp_
-            source_layer: [areas]
-            target_layer: [L56_h]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vs_
-            source_layer: [areas]
-            target_layer: [L23_v]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vs_
-            source_layer: [areas]
-            target_layer: [L23_h]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vs_
-            source_layer: [areas]
-            target_layer: [L23_c]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vs_
-            source_layer: [areas]
-            target_layer: [L4_v]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vs_
-            source_layer: [areas]
-            target_layer: [L4_h]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vs_
-            source_layer: [areas]
-            target_layer: [L4_c]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vs_
-            source_layer: [areas]
-            target_layer: [L56_v]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vs_
-            source_layer: [areas]
-            target_layer: [L56_h]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: extrinsic_
-            target_area: Vs_
-            source_layer: [areas]
-            target_layer: [L56_c]
-            params:
-              <<: *s2
-              synapse_model: AMPA_s_syn
-              targets: {model: Ex_cort}
-              weights: 10.0
-          -
-            source_area: MINI_
-            target_area: Tp_
+            source_area: [MINI_,MINI_,MINI_,MINI_]
+            target_area: [Tp_,Ts_,Rp_,Rs_]
             source_layer: [layer]
             target_layer: [layer]
             params:
               <<: *s2
               synapse_model: MINI_syn
           -
-            source_area: MINI_
-            target_area: Ts_
+            source_area: [MINI_]
+            target_area: [Vp_]
             source_layer: [layer]
-            target_layer: [layer]
+            target_layer: [L23_v,L23_h,L4_v,L4_h,L56_v,L56_h]
             params:
               <<: *s2
               synapse_model: MINI_syn
           -
-            source_area: MINI_
-            target_area: Rp_
+            source_area: [MINI_]
+            target_area: [Vs_]
             source_layer: [layer]
-            target_layer: [layer]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Rs_
-            source_layer: [layer]
-            target_layer: [layer]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vp_
-            source_layer: [layer]
-            target_layer: [L23_v]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vp_
-            source_layer: [layer]
-            target_layer: [L23_h]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vp_
-            source_layer: [layer]
-            target_layer: [L4_v]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vp_
-            source_layer: [layer]
-            target_layer: [L4_h]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vp_
-            source_layer: [layer]
-            target_layer: [L56_v]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vp_
-            source_layer: [layer]
-            target_layer: [L56_h]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vs_
-            source_layer: [layer]
-            target_layer: [L23_v]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vs_
-            source_layer: [layer]
-            target_layer: [L23_h]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vs_
-            source_layer: [layer]
-            target_layer: [L23_c]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vs_
-            source_layer: [layer]
-            target_layer: [L4_v]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vs_
-            source_layer: [layer]
-            target_layer: [L4_h]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vs_
-            source_layer: [layer]
-            target_layer: [L4_c]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vs_
-            source_layer: [layer]
-            target_layer: [L56_v]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vs_
-            source_layer: [layer]
-            target_layer: [L56_h]
-            params:
-              <<: *s2
-              synapse_model: MINI_syn
-          -
-            source_area: MINI_
-            target_area: Vs_
-            source_layer: [layer]
-            target_layer: [L56_c]
+            target_layer: [L23_v,L23_h,L23_c,L4_v,L4_h,L4_c,L56_v,L56_h,L56_c]
             params:
               <<: *s2
               synapse_model: MINI_syn
